@@ -1,0 +1,14 @@
+{
+    "name": "vendor/name",
+    "require": {
+        "solarium/solarium": "^6.1",
+        "symfony/event-dispatcher": "^6.0",
+        "psr/event-dispatcher": "^1.0"
+    },
+    "authors": [
+        {
+            "name": "davidita118",
+            "email": "david.isaac.iker@hotmail.com"
+        }
+    ]
+}
