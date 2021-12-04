@@ -5,11 +5,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 error_reporting(E_ALL);
 ini_set('display_errors', true);
 
-if (file_exists('config.php')) {
-    require('config.php');
-}
-
-require $config['autoload'] ?? './vendor/autoload.php';
+require_once './Backend/vendor/autoload.php';
 
 $adapter = new Curl();
 $eventDispatcher = new EventDispatcher();

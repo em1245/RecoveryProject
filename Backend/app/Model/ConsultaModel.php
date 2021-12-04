@@ -1,5 +1,5 @@
 <?php
-require_once './app/init.php';
+require_once './Backend/app/init.php';
 
 use Solarium\Client;
 
@@ -10,6 +10,5 @@ $ping = $client->createPing();
 try {
     var_dump($client->ping($ping)->getData());
 }catch(Exception $e) {
-    echo "false";
     var_dump($e->getMessage());
 }
