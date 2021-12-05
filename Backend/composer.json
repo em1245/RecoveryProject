@@ -3,7 +3,8 @@
     "require": {
         "solarium/solarium": "^6.1",
         "symfony/event-dispatcher": "^6.0",
-        "psr/event-dispatcher": "^1.0"
+        "psr/event-dispatcher": "^1.0",
+        "guzzlehttp/guzzle": "^7.4"
     },
     "authors": [
         {
