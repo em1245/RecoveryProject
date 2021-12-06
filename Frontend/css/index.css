@@ -39,6 +39,69 @@ body{
 .btn-search {
 }
 
+.btn:hover{
+    background-color: #91bde8;
+    color: white
+}
+
 .search-type{
     display: flex;
+}
+
+.results-container{
+    width: 80%;
+}
+
+.form-index{
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.form-index textarea{
+    resize: none;
+    border: 2px solid #b0b4ba;
+}
+
+textarea:focus{
+    outline: 2px solid #91bde8;
+    border: none;
+}
+
+.form-index button{
+    width: 120px;
+    padding: .2rem;
+    margin: auto;
+    margin-top: .3rem;
+}
+
+.item{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.id{
+    width: 10%;
+}
+
+.title{
+    width: 40%;
+}
+
+.desc{
+    width: 40%;
+}
+
+.score{
+    width: 10%;
+}
+
+.pages{
+    display: flex;
+    flex-direction: column;
+}
+
+.pages .hd{
+    text-align: left;
 }

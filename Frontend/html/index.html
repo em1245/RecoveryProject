@@ -9,7 +9,12 @@
     <title>Búscador</title>
 </head>
 <body>
-    <div class="container">
+    <div class="container">        
+        <form class="form-index" id="form-index">
+            <textarea id="urls" rows="5"></textarea>
+            <button class="btn">Indexar páginas</button>
+        </form>
+        
         <h1>Búscador Solr</h1>
         <form class="form-search" id="form-search">
             <label class="input-group">
@@ -20,8 +25,14 @@
         </form>
         <div class="search-type">
             <div class="search-type">
-                <input type="checkbox">
+                <input type="checkbox" id="faceted">
                 <label>Búsqueda facetada</label>
+            </div>
+        </div>
+        <div class="results-container">
+            <h3  class="results" id="results"></h3>
+            <div class="pages" id="pages">
+
             </div>
         </div>
     </div>
