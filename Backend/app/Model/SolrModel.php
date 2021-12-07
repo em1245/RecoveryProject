@@ -1,13 +1,13 @@
 <?php
-require_once './Backend/vendor/autoload.php';
-require_once './Backend/app/Model/ConnectionModel.php';
+require_once '../Backend/vendor/autoload.php';
+require_once '../Backend/app/Model/ConnectionModel.php';
 error_reporting(0);
 
 function postURL(string $url, int $level = 0) : bool {
 
     //generando el shell para indexar una pagina web
     pclose(popen(
-        "start /B java -Dc=".CORE_NAME." -Ddata=web -Drecursive=$level -jar ./Backend/solr/example/exampledocs/post.jar $url", 
+        "start /B java -Dc=".CORE_NAME." -Ddata=web -Drecursive=$level -jar ../Backend/solr/example/exampledocs/post.jar $url", 
         "r"
     ));
 
@@ -23,6 +23,10 @@ function getQuery(string $search, bool $facet = false) {
     );
     $query->setQueryDefaultField("description");
 
+    $hl = $query->getHighlighting();
+    $hl->setFields("description");
+    $hl->setSimplePrefix("<strong>");
+    $hl->setSimplePostfix("</strong>");
     //definiendo un campo para buscar
     if($facet) {
         $facetset = $query->getFacetSet();

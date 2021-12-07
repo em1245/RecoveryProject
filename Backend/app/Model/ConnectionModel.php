@@ -1,6 +1,6 @@
 <?php
-require_once './Backend/vendor/autoload.php';
-require_once './Backend/app/Constant.php';
+require_once '../Backend/vendor/autoload.php';
+require_once '../Backend/app/Constant.php';
 
 use Solarium\Client;
 use Solarium\Core\Client\Adapter\Curl;

@@ -74,7 +74,7 @@ formSearch.addEventListener("submit", (event) => {
 
 const searchDocuments = async (query) => {
   try {
-    const url = `http://localhost:3000/index.php?search=${query}&&faceted=${faceted}`;
+    const url = `http://localhost:3000/index.php?search=${query}&&facet=${faceted}`;
     const result = await fetch(url);
     const response = await result.json();
     renderDocuments(response);
@@ -97,7 +97,7 @@ const renderDocuments = (data) => {
     html += "<div class='item'>"
     html += `   <a class="id" href=${doc.id}>Enlace</a>`
     html += `   <p class="title">${doc.title}</´p>`
-    html += `   <p class="desc">${doc.description}</p>`
+    html += `   <p class="desc">${data?.highlighting[doc.id]?.description[0] || doc.description}</p>`
     html += `   <p class="score">${doc.score.toFixed(4)}</p>`
     html += "</div>"
   });

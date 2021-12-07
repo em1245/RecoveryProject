@@ -4,9 +4,9 @@ header("Access-Control-Allow-Headers: X-API-KEY, Origin, X-Requested-With, Conte
 header("Access-Control-Allow-Methods: GET, POST");
 header('Content-Type: application/json');
 
-require_once './Backend/app/Model/SolrModel.php';
-require_once './Backend/app/Model/GrammarModel.php';
-require_once './Backend/app/Model/ConnectionModel.php';
+require_once "../Backend/app/Model/SolrModel.php";
+require_once '../Backend/app/Model/GrammarModel.php';
+require_once '../Backend/app/Model/ConnectionModel.php';
 
 if(isset($_GET['crawler'])) {
     $url = $_GET['crawler'];
