@@ -21,7 +21,7 @@ function getQuery(string $search, bool $facet = false) {
     $query->setQuery( 
         "fq=$search"
     );
-    $query->setQueryDefaultField("description");
+    //$query->setQueryDefaultField("description");
 
     $hl = $query->getHighlighting();
     $hl->setFields("description");
