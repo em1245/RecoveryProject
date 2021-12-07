@@ -31,7 +31,12 @@ function getQuery(string $search, bool $facet = false) {
     if($facet) {
         $facetset = $query->getFacetSet();
         $facetset->createFacetField("description");
-        $facetset->createFacetQuery($search);
+
+        $words = explode(" ", $search);
+
+        foreach($words as $word) {
+            $facetset->createFacetQuery($word);
+        }
     }
 
     try {
