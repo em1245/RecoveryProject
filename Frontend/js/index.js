@@ -5,6 +5,8 @@ const pages = document.getElementById("pages");
 const checkbox =  document.getElementById("faceted");
 const index = document.getElementById("form-index");
 const urls = document.getElementById("urls");
+const facetada = document.getElementById("facetada");
+const recommendation = document.getElementById("recommendation");
 
 const base_url = "http://localhost:3000/Backend/index.php?";
 
@@ -45,13 +47,13 @@ formSearch.addEventListener("submit", (event) => {
   event.preventDefault();
   let value = inputSearch.value;
 
-  if(faceted) {
-    searchDocuments(value);
-    return;
+  if(faceted){
+    return searchDocuments(value);
   }
 
   let elements = value.split(" ");
   if (elements[0] && !operators.includes(elements[0])) {
+    getRecommendation(elements[0]);
     elements[0] = `+${elements[0]}`;
     value = elements.join(" ");
   }
@@ -79,15 +81,19 @@ formSearch.addEventListener("submit", (event) => {
   });
 });
 
+const getRecommendation = (word)=>{
+  const url = `${base_url}grammar=${word}"}`;
+  fetch(url).then(res=>res.json())
+    .then(response=>{
+      const words = response.map(res=>`<strong>${res.word}</strong>`)
+      recommendation.innerHTML = `Querías decir: ${words.join(", ")} `
+    }).catch(error=>console.error(error));
+    return;
+}
+
 const searchDocuments = async (query) => {
   try {
-    let url;
-    if(faceted) {
-      url = `${base_url}search=${query}&facet=${faceted}`;
-    } else {
-      url = `${base_url}search=${query}`;
-    }
-
+    const url = `${base_url}search=${query}${faceted && "&&facet=true"}`;
     const result = await fetch(url);
     const response = await result.json();
     renderDocuments(response);
@@ -99,7 +105,38 @@ const searchDocuments = async (query) => {
 const renderDocuments = (data) => {
   results.innerHTML = `Resultados encontrados ${data.response.numFound}`;
   console.log(data);
-  let html = `<div class='item hd'>
+
+  let html = "";
+
+  if(faceted ){
+    dataFacet = data.facet_counts.facet_fields.description
+    console.log(dataFacet)
+    // const facetObjets = Object.keys(dataFacet)
+    // console.log(facetObjets)
+    html += `<div class="facet-container">
+                <div class="facet">
+                  <p>URL de la página</p>
+                  <p>Veces repetidas</p>
+                </div>`
+    for(i=0; i<dataFacet.length; i+=2){
+      if(dataFacet[i+1] > 0){
+        html += `<div class="facet">
+                      <p>${dataFacet[i]}</p>
+                      <p>${dataFacet[i+1]}</p>
+                  </div>`
+      }
+    }
+    html += "</div>"
+    facetada.innerHTML = html;
+    // .map(key=>{
+    //   html += `<div class=''>${key}</div>`
+    // ${key}:${dataFacet[key]}`
+    // })
+  }
+
+  html = "";
+
+  html += `<div class='item hd'>
                 <p class="id hd">Enlace</p>
                 <p class="title hd">Titulo</p>
                 <p class="desc hd">Descripción</p>
