@@ -123,6 +123,8 @@ textarea:focus{
     width: 90%;
     transform: translateY(5px);
     background-color: white;
+    max-height: 300px;
+    overflow-y: auto;
 }
 
 .auto-item:hover{
