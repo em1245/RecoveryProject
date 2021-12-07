@@ -6,8 +6,9 @@ const checkbox =  document.getElementById("faceted");
 const index = document.getElementById("form-index");
 const urls = document.getElementById("urls");
 
+const base_url = "http://localhost:3000/Backend/index.php?";
 
-inputSearch.value = "hola AND casa OR uady mate NOT pluma";
+inputSearch.value = "";
 const operators = ["or", "and", "not"];
 let faceted = false
 checkbox.checked = faceted;
@@ -30,7 +31,7 @@ index.addEventListener("submit", (event)=>{
 })
 
 const indexUrl = async (url) => {
-  const enpoint = `http://localhost:3000/index.php?crawler=${url}`;
+  const enpoint = `${base_url}crawler=${url}`;
   try {
     const result = await fetch(enpoint);
     return await result.json();
@@ -43,6 +44,12 @@ const indexUrl = async (url) => {
 formSearch.addEventListener("submit", (event) => {
   event.preventDefault();
   let value = inputSearch.value;
+
+  if(faceted) {
+    searchDocuments(value);
+    return;
+  }
+
   let elements = value.split(" ");
   if (elements[0] && !operators.includes(elements[0])) {
     elements[0] = `+${elements[0]}`;
@@ -74,7 +81,13 @@ formSearch.addEventListener("submit", (event) => {
 
 const searchDocuments = async (query) => {
   try {
-    const url = `http://localhost:3000/index.php?search=${query}&&facet=${faceted}`;
+    let url;
+    if(faceted) {
+      url = `${base_url}search=${query}&facet=${faceted}`;
+    } else {
+      url = `${base_url}search=${query}`;
+    }
+
     const result = await fetch(url);
     const response = await result.json();
     renderDocuments(response);
