@@ -35,6 +35,6 @@ function getQuery(string $search, bool $facet = false) {
         
         return $result->getResponse()->getBody();
     }catch (Exception $e) {
-        return array("msg" => $e->getMessage());
+        return $e->getMessage();
     }
 }
