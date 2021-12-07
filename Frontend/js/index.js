@@ -78,6 +78,7 @@ const indexUrl = async (url) => {
 
 formSearch.addEventListener("submit", (event) => {
   event.preventDefault();
+  autocomplete.style.display = "none";
   let value = inputSearch.value;
 
   if (faceted) {
