@@ -3,7 +3,7 @@ require_once '../Backend/vendor/autoload.php';
 
 use GuzzleHttp\Client;
 
-function getGrammar(string $keyword, string $language = "es", int $max = 10) : string {
+function getGrammar(string $keyword, string $language = "es", int $max = 5) : string {
     $keyword = str_replace(" ", "+", $keyword);
 
     $http = new Client();
