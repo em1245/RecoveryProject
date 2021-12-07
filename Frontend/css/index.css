@@ -105,3 +105,13 @@ textarea:focus{
 .pages .hd{
     text-align: left;
 }
+
+.facet{
+    display: flex;
+    justify-content: space-between;
+}
+
+.facet-container{
+    width: 40%;
+    margin: auto;
+}
