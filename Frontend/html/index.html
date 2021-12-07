@@ -18,8 +18,9 @@
         <h1>Búscador Solr</h1>
         <form class="form-search" id="form-search">
             <label class="input-group">
-                <input placeholder="ingresa las palabras a búscar" id="input-search">
+                <input placeholder="ingresa las palabras a búscar" id="input-search"  autocomplete="off">
                 <i class="bi bi-search"></i>
+                <div class="autocomplete" id="autocomplete"></div>
             </label>
             <button class="btn btn-search">Buscar</button>
         </form>
@@ -42,6 +43,6 @@
             </div>
         </div>
     </div>
-    <script src="../js/index.js"></script> 
+    <script src="../js/index.js" type="module"></script>
 </body>
 </html>
